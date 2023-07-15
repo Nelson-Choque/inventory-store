@@ -89,6 +89,7 @@ export const editProduct = (req, res) => {
       precio
     );
 
+    console.log(id);
     connection.query(
       "UPDATE producto SET nombre = ?, descripcion = ?, stock = ?, precio = ? WHERE cod_producto = ?",
       [
@@ -117,9 +118,12 @@ export const editProduct = (req, res) => {
   }
 };
 
-export const deleteProduct = () => (req, res) => {
+export const deleteProduct = (req, res) => {
   try {
     const id = req.params.id;
+
+    console.log(id);
+    console.log("hola");
 
     connection.query(
       "delete from producto where cod_producto = ?",
