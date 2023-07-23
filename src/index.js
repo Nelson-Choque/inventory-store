@@ -3,8 +3,13 @@ import express from "express";
 import routerProducto from "./routes/productRouter.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
+import cors from "cors";
+
 import path from "path";
+
 const app = express();
+
+app.use(cors());
 
 //configure swagger
 console.info(`${path.join(import.meta.url)}`);

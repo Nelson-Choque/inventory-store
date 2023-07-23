@@ -49,14 +49,8 @@ export const createProduct = (req, res) => {
     );
 
     connection.query(
-      "INSERT INTO producto (cod_producto, nombre, descripcion, stock, precio) VALUES (?, ?, ?, ?, ?)",
-      [
-        producto.cod_producto,
-        producto.nombre,
-        producto.descripcion,
-        producto.stock,
-        producto.precio,
-      ],
+      "INSERT INTO producto (nombre, descripcion, stock, precio) VALUES (?, ?, ?, ?)",
+      [producto.nombre, producto.descripcion, producto.stock, producto.precio],
       (err, result) => {
         if (err) {
           console.error("Error al insertar el producto:", err);
@@ -121,9 +115,6 @@ export const editProduct = (req, res) => {
 export const deleteProduct = (req, res) => {
   try {
     const id = req.params.id;
-
-    console.log(id);
-    console.log("hola");
 
     connection.query(
       "delete from producto where cod_producto = ?",

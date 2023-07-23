@@ -18,13 +18,13 @@ components:
         descripcion:
           type: string
           description: Descripción del producto.
-        stock:
-          type: integer
-          description: Cantidad en stock del producto.
         precio:
           type: number
           format: double
           description: Precio del producto.
+        stock:
+          type: integer
+          description: Cantidad en stock del producto.          
 paths:
   /producto/:
     get:

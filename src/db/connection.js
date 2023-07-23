@@ -1,25 +1,18 @@
-import mysql from 'mysql2';
-
+import mysql from "mysql2";
 
 const connection = mysql.createConnection({
-    
-    database: "db_tienda",
-    host: "localhost",
-    user: "root",
-    password: "",
+  database: "topitop",
+  host: "localhost",
+  user: "root",
+  password: "1234",
+});
 
-})
+connection.connect((err) => {
+  if (err) {
+    throw "error en la conexion: " + err;
+  }
 
-connection.connect((err)=>{
-
-    if(err){
-        throw "error en la conexion: "+ err;
-    }
-
-    console.log("todo guchi");
-
-})
+  console.log("todo guchi");
+});
 
 export default connection;
-
-
