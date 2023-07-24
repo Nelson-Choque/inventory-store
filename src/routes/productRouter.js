@@ -21,6 +21,5 @@ routerProducto.post("/", createProduct);
 routerProducto.put("/:id", editProduct);
 
 routerProducto.delete("/:id", deleteProduct);
-routerProducto.delete("/a/a", deleteProduct);
 
 export default routerProducto;

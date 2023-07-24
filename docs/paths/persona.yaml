@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Persona
+  summary: Obtiene todos los registros de persona
+  description: Endpoint para obtener todos las Personas disponibles.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Persona
+  summary: Crea una nueva Persona
+  description: Endpoint para crear una nueva persona pasando en el cuerpo un JSON con los atributos de la persona.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Persona"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

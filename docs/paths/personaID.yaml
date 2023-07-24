@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Persona
+  summary: Obtiene una persona por ID
+  description: Endpoint para obtener una persona específica por su ID.
+  parameters:
+    - in: path
+      name: id
+      description: ID de la persona a buscar.
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#components/schemas/Persona"
+put:
+  tags:
+    - Persona
+  summary: editar una persona
+  description: Endpoint para editar una persona enviando como parametro su id y como body el objeto "completo" a modificar
+  parameters:
+    - in: path
+      name: id
+      description: id de la persona a editar
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Persona"
+  responses:
+    "204":
+      description: no content, se edito con exito
+    "404":
+      description: bad request
+delete:
+  tags:
+    - Persona
+  summary: eliminar persona
+  description: elimina una persona pasando como parametro el id
+  parameters:
+    - in: path
+      name: id
+      description: id de la persona a eliminar
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: se elimino con exito
+    "404":
+      description: bad request

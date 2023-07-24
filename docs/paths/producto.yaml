@@ -1,0 +1,25 @@
+get:
+  tags:
+    - Producto
+  summary: Obtiene todos los productos
+  description: Endpoint para obtener todos los productos disponibles.
+  operationId: obtenerProductos
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Producto
+  summary: Crea un nuevo producto
+  description: Endpoint para crear un nuevo producto pasando en el cuerpo un JSON con los atributos del producto.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Producto"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

@@ -1,0 +1,36 @@
+type: object
+
+properties:
+  cod_persona:
+    type: string
+    description: Código de la persona.
+  nombre:
+    type: string
+    description: Nombre de la persona.
+  apellidos:
+    type: string
+    description: apellidos de la persona.
+  dni:
+    type: number
+    format: int
+    description: dni de la persona
+  direccion:
+    type: number
+    format: int
+    description: dni de la persona
+  telefono:
+    type: number
+    format: int
+    description: dni de la persona
+  email:
+    type: number
+    format: int
+    description: correo de la persona
+  sexo:
+    type: number
+    format: int
+    description: sexo de la persona M O F
+  fechaDeNacimiento:
+    type: number
+    format: int
+    description: fecha de nacimiento de la persona

@@ -2,18 +2,19 @@ import connection from "../db/connection.js";
 
 import express from "express";
 import { Producto } from "../model/Producto.js";
+import { Persona } from "../model/Persona.js";
 
 export const getProducts = (req, res) => {
-  connection.query("select * from producto", (err, result) => {
+  connection.query("select * from persona", (err, result) => {
     if (err) {
       throw "hubo un error: " + err;
+      return "";
     }
 
     if (result.length === 0) {
-      res.send("los productos estan vacios");
+      res.send("las personas estan vacias");
       return "";
     }
-    console.log(result);
 
     res.send(result);
   });
@@ -23,7 +24,7 @@ export const getProductById = (req, res) => {
   const id = req.params.id;
 
   connection.query(
-    "select * from producto where cod_producto = ?",
+    "select * from persona where cod_persona = ?",
     [id],
     (err, result) => {
       if (err) throw "hubo un error en la consulta: " + err;
@@ -42,16 +43,30 @@ export const createProduct = (req, res) => {
   try {
     const newProduct = req.body;
 
-    const producto = new Producto(
-      newProduct.cod_producto,
+    const persona = new Persona(
+      newProduct.codPersona,
       newProduct.nombre,
-      newProduct.descripcion,
-      newProduct.precio
+      newProduct.apellidos,
+      newProduct.dni,
+      newProduct.direccion,
+      newProduct.telefono,
+      newProduct.email,
+      newProduct.sexo,
+      newProduct.fechaDeNacimiento
     );
 
     connection.query(
-      "INSERT INTO producto (nombre, descripcion, precio) VALUES (?, ?, ?)",
-      [producto.nombre, producto.descripcion, producto.precio],
+      "INSERT INTO persona (nombre, apellidos, dni, direccion,telefono,email,sexo,fecha_de_nacimiento) VALUES (?, ?, ?, ?,?,?,?,?)",
+      [
+        persona.nombre,
+        persona.apellidos,
+        persona.dni,
+        persona.direccion,
+        persona.telefono,
+        persona.email,
+        persona.sexo,
+        persona.fechaDeNacimiento,
+      ],
       (err, result) => {
         if (err) {
           console.error("Error al insertar el producto:", err);
@@ -74,14 +89,44 @@ export const editProduct = (req, res) => {
   try {
     const id = req.params.id;
 
-    const { cod_producto, nombre, descripcion, stock, precio } = req.body;
-
-    const producto = new Producto(cod_producto, nombre, descripcion, precio);
+    const {
+      codPersona,
+      nombre,
+      apellidos,
+      dni,
+      direccion,
+      telefono,
+      email,
+      sexo,
+      fechaDeNacimiento,
+    } = req.body;
+    console.log(req.body);
+    const persona = new Persona(
+      codPersona,
+      nombre,
+      apellidos,
+      dni,
+      direccion,
+      telefono,
+      email,
+      sexo,
+      fechaDeNacimiento
+    );
 
     console.log(id);
     connection.query(
-      "UPDATE producto SET nombre = ?, descripcion = ?, precio = ? WHERE cod_producto = ?",
-      [producto.nombre, producto.descripcion, producto.precio, id],
+      "UPDATE persona SET nombre = ?, apellidos = ?, dni = ?, direccion = ?, telefono = ?, email = ?, sexo = ?, fecha_de_nacimiento = ? WHERE cod_persona = ?",
+      [
+        persona.nombre,
+        persona.apellidos,
+        persona.dni,
+        persona.direccion,
+        persona.telefono,
+        persona.email,
+        persona.sexo,
+        persona.fechaDeNacimiento,
+        id,
+      ],
       (err, result, fields) => {
         if (err) {
           throw "no se pudo editar el producto con id " + id;
@@ -89,7 +134,7 @@ export const editProduct = (req, res) => {
         }
 
         if (result.affectedRows === 0) {
-          res.status(404).send("no se encontro el producto con id: " + id);
+          res.status(404).send("no se encontro la persona con id: " + id);
           return "";
         }
         res.status(204).send();
@@ -106,7 +151,7 @@ export const deleteProduct = (req, res) => {
     const id = req.params.id;
 
     connection.query(
-      "delete from producto where cod_producto = ?",
+      "delete from persona where cod_persona = ?",
       [id],
       (err, result) => {
         if (err) throw "ocurrio un error : " + err;

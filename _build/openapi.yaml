@@ -1,0 +1,350 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API de Productos",
+    "description": "Documentación de la API de Productos",
+    "version": "1.0.0"
+  },
+  "components": {
+    "schemas": {
+      "Producto": {
+        "type": "object",
+        "properties": {
+          "cod_producto": {
+            "type": "string",
+            "description": "Código del producto."
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre del producto."
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Descripción del producto."
+          },
+          "precio": {
+            "type": "number",
+            "format": "double",
+            "description": "Precio del producto."
+          }
+        }
+      },
+      "Persona": {
+        "type": "object",
+        "properties": {
+          "cod_persona": {
+            "type": "string",
+            "description": "Código de la persona."
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre de la persona."
+          },
+          "apellidos": {
+            "type": "string",
+            "description": "apellidos de la persona."
+          },
+          "dni": {
+            "type": "number",
+            "format": "int",
+            "description": "dni de la persona"
+          },
+          "direccion": {
+            "type": "number",
+            "format": "int",
+            "description": "dni de la persona"
+          },
+          "telefono": {
+            "type": "number",
+            "format": "int",
+            "description": "dni de la persona"
+          },
+          "email": {
+            "type": "number",
+            "format": "int",
+            "description": "correo de la persona"
+          },
+          "sexo": {
+            "type": "number",
+            "format": "int",
+            "description": "sexo de la persona M O F"
+          },
+          "fechaDeNacimiento": {
+            "type": "number",
+            "format": "int",
+            "description": "fecha de nacimiento de la persona"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/producto/": {
+      "get": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Obtiene todos los productos",
+        "description": "Endpoint para obtener todos los productos disponibles.",
+        "operationId": "obtenerProductos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Crea un nuevo producto",
+        "description": "Endpoint para crear un nuevo producto pasando en el cuerpo un JSON con los atributos del producto.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Producto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/producto/{id}": {
+      "get": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Obtiene un producto por ID",
+        "description": "Endpoint para obtener un producto específico por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del producto a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Producto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "editar un producto",
+        "description": "Endpoint para editar un producto enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del producto a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Producto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "eliminar producto",
+        "description": "elimina un producto pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del producto a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/persona/": {
+      "get": {
+        "tags": [
+          "Persona"
+        ],
+        "summary": "Obtiene todos los registros de persona",
+        "description": "Endpoint para obtener todos las Personas disponibles.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Persona"
+        ],
+        "summary": "Crea una nueva Persona",
+        "description": "Endpoint para crear una nueva persona pasando en el cuerpo un JSON con los atributos de la persona.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Persona"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/persona/{id}": {
+      "get": {
+        "tags": [
+          "Persona"
+        ],
+        "summary": "Obtiene una persona por ID",
+        "description": "Endpoint para obtener una persona específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID de la persona a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Persona"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Persona"
+        ],
+        "summary": "editar una persona",
+        "description": "Endpoint para editar una persona enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la persona a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Persona"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Persona"
+        ],
+        "summary": "eliminar persona",
+        "description": "elimina una persona pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la persona a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    }
+  }
+}

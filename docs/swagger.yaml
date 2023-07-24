@@ -6,109 +6,16 @@ info:
 components:
   schemas:
     Producto:
-      type: object
+      $ref: "./schemas/producto.yaml"
+    Persona:
+      $ref: "./schemas/persona.yaml"
 
-      properties: 
-        cod_producto:
-          type: string
-          description: Código del producto.
-        nombre:
-          type: string
-          description: Nombre del producto.
-        descripcion:
-          type: string
-          description: Descripción del producto.
-        precio:
-          type: number
-          format: double
-          description: Precio del producto.
-        stock:
-          type: integer
-          description: Cantidad en stock del producto.          
 paths:
   /producto/:
-    get:
-      tags:
-        - Producto
-      summary: Obtiene todos los productos
-      description: Endpoint para obtener todos los productos disponibles.
-      operationId: obtenerProductos
-      responses:
-        '200':
-          description: OK
-    post:
-      tags:
-        - Producto
-      summary: Crea un nuevo producto
-      description: Endpoint para crear un nuevo producto pasando en el cuerpo un JSON con los atributos del producto.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Producto'
-      responses:
-        '201':
-          description: Created
-        '400':
-          description: Bad Request
+    $ref: "./paths/producto.yaml"
   /producto/{id}:
-    get:
-      tags:
-        - Producto
-      summary: Obtiene un producto por ID
-      description: Endpoint para obtener un producto específico por su ID.
-      parameters:
-        - in: path
-          name: id
-          description: ID del producto a buscar.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Producto'
-    put:
-      tags:
-        - Producto
-      summary: editar un producto
-      description: Endpoint para editar un producto enviando como parametro su id y como body el objeto "completo" a modificar
-      parameters:
-        - in: path
-          name: id
-          description: id del producto a editar
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Producto'
-      responses:
-        '204': 
-          description: no content, se edito con exito
-        '404': 
-          description: bad request
-    delete:
-      tags:
-        - Producto
-      summary: eliminar producto
-      description: elimina un producto pasando como parametro el id
-      parameters:
-        - in : path
-          name: id
-          description: id del producto a eliminar
-          required: true
-          schema:
-            type : string
-      responses:
-        '200':
-          description: se elimino con exito
-        '404':
-          description: bad request
+    $ref: "./paths/productoID.yaml"
+  /persona/:
+    $ref: "./paths/persona.yaml"
+  /persona/{id}:
+    $ref: "./paths/personaID.yaml"
