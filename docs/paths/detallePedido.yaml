@@ -1,0 +1,24 @@
+get:
+  tags:
+    - DetallePedido
+  summary: Obtiene todos los registros de DetallePedido
+  description: Endpoint para obtener todos los DetallePedido.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - DetallePedido
+  summary: Crea una nuevo DetallePedido
+  description: Endpoint para crear un nuevo DetallePedido pasando en el cuerpo un JSON con los atributos de la DetallePedido.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/DetallePedido"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

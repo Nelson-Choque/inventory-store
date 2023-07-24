@@ -7,6 +7,14 @@ import cors from "cors";
 
 import path from "path";
 import routerPersona from "./routes/personaRouter.js";
+import routerAlmacen from "./routes/almacenRouter.js";
+import routerAlmacenProducto from "./routes/almacenProductoRouter.js";
+import routerCliente from "./routes/clienteRouter.js";
+import routerDetallePedido from "./routes/detallePedidoRouter.js";
+import routerPedido from "./routes/pedidoRouter.js";
+import routerStock from "./routes/stockRouter.js";
+import routerUsuario from "./routes/usuarioRouter.js";
+import routerTrabajador from "./routes/trabajadorRouter.js";
 
 const app = express();
 
@@ -39,3 +47,11 @@ app.use(
 
 app.use("/producto", routerProducto);
 app.use("/persona", routerPersona);
+app.use("/almacen", routerAlmacen);
+app.use("/almacen-producto", routerAlmacenProducto);
+app.use("/cliente", routerCliente);
+app.use("/detalle-pedido", routerDetallePedido);
+app.use("/pedido", routerPedido);
+app.use("/stock", routerStock);
+app.use("/trabajador", routerTrabajador);
+app.use("/usuario", routerUsuario);

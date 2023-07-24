@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Pedido
+  summary: Obtiene todos los registros de Pedido
+  description: Endpoint para obtener todos los Pedido.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Pedido
+  summary: Crea una nuevo Pedido
+  description: Endpoint para crear un nuevo Pedido pasando en el cuerpo un JSON con los atributos de la Pedido.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Pedido"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

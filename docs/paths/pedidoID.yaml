@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Pedido
+  summary: Obtiene un Pedido por ID
+  description: Endpoint para obtener un Pedido específica por su ID.
+  parameters:
+    - in: path
+      name: id
+      description: ID del Pedido a buscar.
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#components/schemas/Pedido"
+put:
+  tags:
+    - Pedido
+  summary: editar un Pedido
+  description: Endpoint para editar un Pedido enviando como parametro su id y como body el objeto "completo" a modificar
+  parameters:
+    - in: path
+      name: id
+      description: id del Pedido a editar
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Pedido"
+  responses:
+    "204":
+      description: no content, se edito con exito
+    "404":
+      description: bad request
+delete:
+  tags:
+    - Pedido
+  summary: eliminar Pedido
+  description: elimina una Pedido pasando como parametro el id
+  parameters:
+    - in: path
+      name: id
+      description: id de la Pedido a eliminar
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: se elimino con exito
+    "404":
+      description: bad request

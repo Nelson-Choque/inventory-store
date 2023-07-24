@@ -9,6 +9,22 @@ components:
       $ref: "./schemas/producto.yaml"
     Persona:
       $ref: "./schemas/persona.yaml"
+    Almacen:
+      $ref: "./schemas/almacen.yaml"
+    AlmacenProducto:
+      $ref: "./schemas/almacen_producto.yaml"
+    Cliente:
+      $ref: "./schemas/cliente.yaml"
+    DetallePedido:
+      $ref: "./schemas/detalle_pedido.yaml"
+    Pedido:
+      $ref: "./schemas/pedido.yaml"
+    Stock:
+      $ref: "./schemas/stock.yaml"
+    Trabajador:
+      $ref: "./schemas/trabajador.yaml"
+    Usuario:
+      $ref: "./schemas/usuario.yaml"
 
 paths:
   /producto/:
@@ -19,3 +35,35 @@ paths:
     $ref: "./paths/persona.yaml"
   /persona/{id}:
     $ref: "./paths/personaID.yaml"
+  /almacen/:
+    $ref: "./paths/almacen.yaml"
+  /almacen/{id}:
+    $ref: "./paths/almacenID.yaml"
+  /almacen-producto/:
+    $ref: "./paths/almacenProducto.yaml"
+  /almacen-producto/{id}:
+    $ref: "./paths/almacenProductoID.yaml"
+  /cliente/:
+    $ref: "./paths/cliente.yaml"
+  /cliente/{id}:
+    $ref: "./paths/clienteID.yaml"
+  /detalle-pedido/:
+    $ref: "./paths/detallePedido.yaml"
+  /detalle-pedido/{id}:
+    $ref: "./paths/detallePedidoID.yaml"
+  /pedido/:
+    $ref: "./paths/pedido.yaml"
+  /pedido/{id}:
+    $ref: "./paths/pedidoID.yaml"
+  /stock/:
+    $ref: "./paths/stock.yaml"
+  /stock/{id}:
+    $ref: "./paths/stockID.yaml"
+  /trabajador/:
+    $ref: "./paths/trabajador.yaml"
+  /trabajador/{id}:
+    $ref: "./paths/trabajadorID.yaml"
+  /usuario/:
+    $ref: "./paths/usuario.yaml"
+  /usuario/{id}:
+    $ref: "./paths/usuarioID.yaml"

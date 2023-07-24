@@ -1,0 +1,18 @@
+type: object
+
+properties:
+  codUsuario:
+    type: string
+    description: Código del usuario.
+  username:
+    type: string
+    description: nombre del usuario.
+  password:
+    type: string
+    description: contraseña del usuario.
+  role:
+    type: string
+    description: rol del usuario.
+  codPersona:
+    type: string
+    description: codigo de persona.

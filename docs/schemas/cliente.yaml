@@ -1,0 +1,12 @@
+type: object
+
+properties:
+  codCliente:
+    type: string
+    description: Código de cliente.
+  estado:
+    type: boolean
+    description: estado del cliente 1 = activo o 0 = inactivo
+  codPersona:
+    type: string
+    description: codigo de persona.

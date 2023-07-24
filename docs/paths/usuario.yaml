@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Usuario
+  summary: Obtiene todos los registros de Usuario
+  description: Endpoint para obtener todos los Usuario.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Usuario
+  summary: Crea una nuevo Usuario
+  description: Endpoint para crear un nuevo Usuario pasando en el cuerpo un JSON con los atributos de la Usuario.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Usuario"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Trabajador
+  summary: Obtiene un Trabajador por ID
+  description: Endpoint para obtener un Trabajador específica por su ID.
+  parameters:
+    - in: path
+      name: id
+      description: ID del Trabajador a buscar.
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#components/schemas/Trabajador"
+put:
+  tags:
+    - Trabajador
+  summary: editar un Trabajador
+  description: Endpoint para editar un Trabajador enviando como parametro su id y como body el objeto "completo" a modificar
+  parameters:
+    - in: path
+      name: id
+      description: id del Trabajador a editar
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Trabajador"
+  responses:
+    "204":
+      description: no content, se edito con exito
+    "404":
+      description: bad request
+delete:
+  tags:
+    - Trabajador
+  summary: eliminar Trabajador
+  description: elimina una Trabajador pasando como parametro el id
+  parameters:
+    - in: path
+      name: id
+      description: id de la Trabajador a eliminar
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: se elimino con exito
+    "404":
+      description: bad request

@@ -18,6 +18,5 @@ routerPersona.post("/", createProduct);
 routerPersona.put("/:id", editProduct);
 
 routerPersona.delete("/:id", deleteProduct);
-routerPersona.delete("/a/a", deleteProduct);
 
 export default routerPersona;

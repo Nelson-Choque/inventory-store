@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Cliente
+  summary: Obtiene todos los registros de Cliente
+  description: Endpoint para obtener todos los Cliente.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Cliente
+  summary: Crea una nuevo Cliente
+  description: Endpoint para crear un nuevo Cliente pasando en el cuerpo un JSON con los atributos de la Cliente.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Cliente"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

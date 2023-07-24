@@ -1,0 +1,15 @@
+type: object
+
+properties:
+  codStock:
+    type: string
+    description: Código de stock.
+  cantidadMaxima:
+    type: int
+    description: cantidad maxima de stock que soporta el almacen.
+  cantidadMinima:
+    type: int
+    description: cantidad minima de stock que debe tener el almacen.
+  codAlmacen:
+    type: string
+    description: codigo del almacen.

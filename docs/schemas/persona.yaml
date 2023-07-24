@@ -1,7 +1,7 @@
 type: object
 
 properties:
-  cod_persona:
+  codPersona:
     type: string
     description: Código de la persona.
   nombre:

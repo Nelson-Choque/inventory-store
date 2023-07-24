@@ -1,0 +1,15 @@
+type: object
+
+properties:
+  codAlmacenProducto:
+    type: string
+    description: codigo de almacen_producto.
+  stock:
+    type: string
+    description: cantidad de stock del almacen.
+  codAlmacen:
+    type: string
+    description: codigo de almacen.
+  codProducto:
+    type: string
+    description: codigo del producto.

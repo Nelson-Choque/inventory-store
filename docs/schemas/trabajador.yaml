@@ -1,0 +1,18 @@
+type: object
+
+properties:
+  codTrabajador:
+    type: string
+    description: Código del trabajador.
+  especialidad:
+    type: string
+    description: Nombre de la especialidad.
+  sueldo:
+    type: double
+    description: cantidad de sueldo del trabajador.
+  codPersona:
+    type: string
+    description: codigo de la persona.
+  codAlmacen:
+    type: string
+    description: codigo del almacen.

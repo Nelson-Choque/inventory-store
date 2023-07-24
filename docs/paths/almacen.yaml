@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Almacen
+  summary: Obtiene todos los registros de almacenes
+  description: Endpoint para obtener todos los almacenes.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Almacen
+  summary: Crea una nuevo almacen
+  description: Endpoint para crear un nuevo almacen pasando en el cuerpo un JSON con los atributos de la almacen.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Almacen"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

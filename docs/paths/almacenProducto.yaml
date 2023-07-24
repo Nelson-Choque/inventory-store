@@ -1,0 +1,24 @@
+get:
+  tags:
+    - AlmacenProducto
+  summary: Obtiene todos los registros de AlmacenProducto
+  description: Endpoint para obtener todos los AlmacenProducto.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - AlmacenProducto
+  summary: Crea una nuevo AlmacenProducto
+  description: Endpoint para crear un nuevo AlmacenProducto pasando en el cuerpo un JSON con los atributos de la AlmacenProducto.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/AlmacenProducto"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

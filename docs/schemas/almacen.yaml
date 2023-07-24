@@ -1,16 +1,12 @@
 type: object
 
 properties:
-  codProducto:
+  codAlmacen:
     type: string
     description: Código del producto.
   nombre:
     type: string
     description: Nombre del producto.
-  descripcion:
+  direccion:
     type: string
     description: Descripción del producto.
-  precio:
-    type: number
-    format: double
-    description: Precio del producto.

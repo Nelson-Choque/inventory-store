@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Stock
+  summary: Obtiene todos los registros de Stock
+  description: Endpoint para obtener todos los Stock.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Stock
+  summary: Crea una nuevo Stock
+  description: Endpoint para crear un nuevo Stock pasando en el cuerpo un JSON con los atributos de la Stock.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Stock"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

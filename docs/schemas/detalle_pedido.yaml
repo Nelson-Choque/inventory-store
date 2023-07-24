@@ -1,0 +1,18 @@
+type: object
+
+properties:
+  codDetallePedido:
+    type: string
+    description: Código de codDetallePedido.
+  cantidad:
+    type: string
+    description: cantidad del producto
+  precioUnitario:
+    type: string
+    description: precio unitario del producto
+  codPedido:
+    type: string
+    description: codigo del pedido
+  codProducto:
+    type: string
+    description: codigo del producto.

@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Cliente
+  summary: Obtiene un Cliente por ID
+  description: Endpoint para obtener un Cliente específica por su ID.
+  parameters:
+    - in: path
+      name: id
+      description: ID del Cliente a buscar.
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#components/schemas/Cliente"
+put:
+  tags:
+    - Cliente
+  summary: editar un Cliente
+  description: Endpoint para editar un Cliente enviando como parametro su id y como body el objeto "completo" a modificar
+  parameters:
+    - in: path
+      name: id
+      description: id del Cliente a editar
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Cliente"
+  responses:
+    "204":
+      description: no content, se edito con exito
+    "404":
+      description: bad request
+delete:
+  tags:
+    - Cliente
+  summary: eliminar Cliente
+  description: elimina una Cliente pasando como parametro el id
+  parameters:
+    - in: path
+      name: id
+      description: id de la Cliente a eliminar
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: se elimino con exito
+    "404":
+      description: bad request

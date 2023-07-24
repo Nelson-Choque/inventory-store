@@ -10,7 +10,7 @@
       "Producto": {
         "type": "object",
         "properties": {
-          "cod_producto": {
+          "codProducto": {
             "type": "string",
             "description": "Código del producto."
           },
@@ -32,7 +32,7 @@
       "Persona": {
         "type": "object",
         "properties": {
-          "cod_persona": {
+          "codPersona": {
             "type": "string",
             "description": "Código de la persona."
           },
@@ -73,6 +73,174 @@
             "type": "number",
             "format": "int",
             "description": "fecha de nacimiento de la persona"
+          }
+        }
+      },
+      "Almacen": {
+        "type": "object",
+        "properties": {
+          "codAlmacen": {
+            "type": "string",
+            "description": "Código del producto."
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre del producto."
+          },
+          "direccion": {
+            "type": "string",
+            "description": "Descripción del producto."
+          }
+        }
+      },
+      "AlmacenProducto": {
+        "type": "object",
+        "properties": {
+          "codAlmacenProducto": {
+            "type": "string",
+            "description": "codigo de almacen_producto."
+          },
+          "stock": {
+            "type": "string",
+            "description": "cantidad de stock del almacen."
+          },
+          "codAlmacen": {
+            "type": "string",
+            "description": "codigo de almacen."
+          },
+          "codProducto": {
+            "type": "string",
+            "description": "codigo del producto."
+          }
+        }
+      },
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "codCliente": {
+            "type": "string",
+            "description": "Código de cliente."
+          },
+          "estado": {
+            "type": "boolean",
+            "description": "estado del cliente 1 = activo o 0 = inactivo"
+          },
+          "codPersona": {
+            "type": "string",
+            "description": "codigo de persona."
+          }
+        }
+      },
+      "DetallePedido": {
+        "type": "object",
+        "properties": {
+          "codDetallePedido": {
+            "type": "string",
+            "description": "Código de codDetallePedido."
+          },
+          "cantidad": {
+            "type": "string",
+            "description": "cantidad del producto"
+          },
+          "precioUnitario": {
+            "type": "string",
+            "description": "precio unitario del producto"
+          },
+          "codPedido": {
+            "type": "string",
+            "description": "codigo del pedido"
+          },
+          "codProducto": {
+            "type": "string",
+            "description": "codigo del producto."
+          }
+        }
+      },
+      "Pedido": {
+        "type": "object",
+        "properties": {
+          "codPedido": {
+            "type": "string",
+            "description": "codigo del pedido."
+          },
+          "fechaPedido": {
+            "type": "string",
+            "description": "fecha del pedido."
+          },
+          "codCliente": {
+            "type": "string",
+            "description": "codigo del cliente."
+          }
+        }
+      },
+      "Stock": {
+        "type": "object",
+        "properties": {
+          "codStock": {
+            "type": "string",
+            "description": "Código de stock."
+          },
+          "cantidadMaxima": {
+            "type": "int",
+            "description": "cantidad maxima de stock que soporta el almacen."
+          },
+          "cantidadMinima": {
+            "type": "int",
+            "description": "cantidad minima de stock que debe tener el almacen."
+          },
+          "codAlmacen": {
+            "type": "string",
+            "description": "codigo del almacen."
+          }
+        }
+      },
+      "Trabajador": {
+        "type": "object",
+        "properties": {
+          "codTrabajador": {
+            "type": "string",
+            "description": "Código del trabajador."
+          },
+          "especialidad": {
+            "type": "string",
+            "description": "Nombre de la especialidad."
+          },
+          "sueldo": {
+            "type": "double",
+            "description": "cantidad de sueldo del trabajador."
+          },
+          "codPersona": {
+            "type": "string",
+            "description": "codigo de la persona."
+          },
+          "codAlmacen": {
+            "type": "string",
+            "description": "codigo del almacen."
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "codUsuario": {
+            "type": "string",
+            "description": "Código del usuario."
+          },
+          "username": {
+            "type": "string",
+            "description": "nombre del usuario."
+          },
+          "password": {
+            "type": "string",
+            "description": "contraseña del usuario."
+          },
+          "role": {
+            "type": "string",
+            "description": "rol del usuario."
+          },
+          "codPersona": {
+            "type": "string",
+            "description": "codigo de persona."
           }
         }
       }
@@ -330,6 +498,1070 @@
             "in": "path",
             "name": "id",
             "description": "id de la persona a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/almacen/": {
+      "get": {
+        "tags": [
+          "Almacen"
+        ],
+        "summary": "Obtiene todos los registros de almacenes",
+        "description": "Endpoint para obtener todos los almacenes.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Almacen"
+        ],
+        "summary": "Crea una nuevo almacen",
+        "description": "Endpoint para crear un nuevo almacen pasando en el cuerpo un JSON con los atributos de la almacen.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Almacen"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/almacen/{id}": {
+      "get": {
+        "tags": [
+          "Almacen"
+        ],
+        "summary": "Obtiene un almacen por ID",
+        "description": "Endpoint para obtener un almacen específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del almacen a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Almacen"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Almacen"
+        ],
+        "summary": "editar un Almacen",
+        "description": "Endpoint para editar un Almacen enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del Almacen a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Almacen"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Almacen"
+        ],
+        "summary": "eliminar Almacen",
+        "description": "elimina una Almacen pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la Almacen a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/almacen-producto/": {
+      "get": {
+        "tags": [
+          "AlmacenProducto"
+        ],
+        "summary": "Obtiene todos los registros de AlmacenProducto",
+        "description": "Endpoint para obtener todos los AlmacenProducto.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AlmacenProducto"
+        ],
+        "summary": "Crea una nuevo AlmacenProducto",
+        "description": "Endpoint para crear un nuevo AlmacenProducto pasando en el cuerpo un JSON con los atributos de la AlmacenProducto.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/AlmacenProducto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/almacen-producto/{id}": {
+      "get": {
+        "tags": [
+          "AlmacenProducto"
+        ],
+        "summary": "Obtiene una AlmacenProducto por ID",
+        "description": "Endpoint para obtener una AlmacenProducto específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID de la AlmacenProducto a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/AlmacenProducto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AlmacenProducto"
+        ],
+        "summary": "editar una AlmacenProducto",
+        "description": "Endpoint para editar una AlmacenProducto enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la AlmacenProducto a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/AlmacenProducto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AlmacenProducto"
+        ],
+        "summary": "eliminar AlmacenProducto",
+        "description": "elimina una AlmacenProducto pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la AlmacenProducto a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/cliente/": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtiene todos los registros de Cliente",
+        "description": "Endpoint para obtener todos los Cliente.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Crea una nuevo Cliente",
+        "description": "Endpoint para crear un nuevo Cliente pasando en el cuerpo un JSON con los atributos de la Cliente.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/cliente/{id}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtiene un Cliente por ID",
+        "description": "Endpoint para obtener un Cliente específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del Cliente a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Cliente"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "editar un Cliente",
+        "description": "Endpoint para editar un Cliente enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del Cliente a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "eliminar Cliente",
+        "description": "elimina una Cliente pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la Cliente a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/detalle-pedido/": {
+      "get": {
+        "tags": [
+          "DetallePedido"
+        ],
+        "summary": "Obtiene todos los registros de DetallePedido",
+        "description": "Endpoint para obtener todos los DetallePedido.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DetallePedido"
+        ],
+        "summary": "Crea una nuevo DetallePedido",
+        "description": "Endpoint para crear un nuevo DetallePedido pasando en el cuerpo un JSON con los atributos de la DetallePedido.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/DetallePedido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/detalle-pedido/{id}": {
+      "get": {
+        "tags": [
+          "DetallePedido"
+        ],
+        "summary": "Obtiene un DetallePedido por ID",
+        "description": "Endpoint para obtener un DetallePedido específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del DetallePedido a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/DetallePedido"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DetallePedido"
+        ],
+        "summary": "editar un DetallePedido",
+        "description": "Endpoint para editar un DetallePedido enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del DetallePedido a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/DetallePedido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DetallePedido"
+        ],
+        "summary": "eliminar DetallePedido",
+        "description": "elimina una DetallePedido pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la DetallePedido a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/pedido/": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene todos los registros de Pedido",
+        "description": "Endpoint para obtener todos los Pedido.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Crea una nuevo Pedido",
+        "description": "Endpoint para crear un nuevo Pedido pasando en el cuerpo un JSON con los atributos de la Pedido.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Pedido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/pedido/{id}": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene un Pedido por ID",
+        "description": "Endpoint para obtener un Pedido específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del Pedido a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Pedido"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "editar un Pedido",
+        "description": "Endpoint para editar un Pedido enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del Pedido a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Pedido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "eliminar Pedido",
+        "description": "elimina una Pedido pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la Pedido a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/stock/": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Obtiene todos los registros de Stock",
+        "description": "Endpoint para obtener todos los Stock.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Crea una nuevo Stock",
+        "description": "Endpoint para crear un nuevo Stock pasando en el cuerpo un JSON con los atributos de la Stock.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Stock"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/stock/{id}": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Obtiene un Stock por ID",
+        "description": "Endpoint para obtener un Stock específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del Stock a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Stock"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "editar un Stock",
+        "description": "Endpoint para editar un Stock enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del Stock a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Stock"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "eliminar Stock",
+        "description": "elimina una Stock pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la Stock a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/trabajador/": {
+      "get": {
+        "tags": [
+          "Trabajador"
+        ],
+        "summary": "Obtiene todos los registros de Trabajador",
+        "description": "Endpoint para obtener todos los Trabajador.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Trabajador"
+        ],
+        "summary": "Crea una nuevo Trabajador",
+        "description": "Endpoint para crear un nuevo Trabajador pasando en el cuerpo un JSON con los atributos de la Trabajador.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Trabajador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/trabajador/{id}": {
+      "get": {
+        "tags": [
+          "Trabajador"
+        ],
+        "summary": "Obtiene un Trabajador por ID",
+        "description": "Endpoint para obtener un Trabajador específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del Trabajador a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Trabajador"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Trabajador"
+        ],
+        "summary": "editar un Trabajador",
+        "description": "Endpoint para editar un Trabajador enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del Trabajador a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Trabajador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Trabajador"
+        ],
+        "summary": "eliminar Trabajador",
+        "description": "elimina una Trabajador pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la Trabajador a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "se elimino con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/usuario/": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Obtiene todos los registros de Usuario",
+        "description": "Endpoint para obtener todos los Usuario.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Crea una nuevo Usuario",
+        "description": "Endpoint para crear un nuevo Usuario pasando en el cuerpo un JSON con los atributos de la Usuario.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/usuario/{id}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Obtiene un Usuario por ID",
+        "description": "Endpoint para obtener un Usuario específica por su ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID del Usuario a buscar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "editar un Usuario",
+        "description": "Endpoint para editar un Usuario enviando como parametro su id y como body el objeto \"completo\" a modificar",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id del Usuario a editar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "no content, se edito con exito"
+          },
+          "404": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "eliminar Usuario",
+        "description": "elimina una Usuario pasando como parametro el id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id de la Usuario a eliminar",
             "required": true,
             "schema": {
               "type": "string"

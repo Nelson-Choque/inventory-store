@@ -7,9 +7,6 @@ import {
   getProducts,
 } from "../controller/productController.js";
 
-import connection from "../db/connection.js";
-import { Producto } from "../model/Producto.js";
-
 const routerProducto = Router();
 
 routerProducto.get("/", getProducts);

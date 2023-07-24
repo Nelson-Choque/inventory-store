@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Trabajador
+  summary: Obtiene todos los registros de Trabajador
+  description: Endpoint para obtener todos los Trabajador.
+  responses:
+    "200":
+      description: OK
+post:
+  tags:
+    - Trabajador
+  summary: Crea una nuevo Trabajador
+  description: Endpoint para crear un nuevo Trabajador pasando en el cuerpo un JSON con los atributos de la Trabajador.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#components/schemas/Trabajador"
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: Bad Request

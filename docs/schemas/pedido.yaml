@@ -1,0 +1,12 @@
+type: object
+
+properties:
+  codPedido:
+    type: string
+    description: codigo del pedido.
+  fechaPedido:
+    type: string
+    description: fecha del pedido.
+  codCliente:
+    type: string
+    description: codigo del cliente.
