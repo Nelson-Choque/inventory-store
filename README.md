@@ -32,3 +32,27 @@ npm start
 ```shell
 npm run dev
 ```
+
+## Configuración de la Base de Datos
+
+Para que la aplicación funcione correctamente, es necesario configurar la conexión con la base de datos. En el archivo `src/db/connection.js` encontrarás el siguiente fragmento de código que debes modificar segun tus credenciales:
+
+```javascript
+const connection = mysql.createConnection({
+  database: "topitop",
+  host: "localhost",
+  user: "",
+  password: "",
+});
+```
+
+## Documentacion de la api
+
+puedes ver la documentacion de los endpoints que se realizo con swagger en la siguiente ruta
+
+```
+/api-docs/
+
+```
+
+![Logo de Mi Proyecto](./other/captura_swagger.PNG)
