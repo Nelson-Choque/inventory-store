@@ -15,7 +15,7 @@ export const getProducts = (req, res) => {
     }
     console.log(result);
 
-    res.send(result);
+    res.send({ products: result });
   });
 };
 
