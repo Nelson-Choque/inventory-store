@@ -4,5 +4,6 @@ export class Producto {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precio = precio;
+    this.urlImg = urlImg;
   }
 }
