@@ -15,6 +15,7 @@ import routerPedido from "./routes/pedidoRouter.js";
 import routerStock from "./routes/stockRouter.js";
 import routerUsuario from "./routes/usuarioRouter.js";
 import routerTrabajador from "./routes/trabajadorRouter.js";
+import routerLogout from "./routes/logoutRouter.js";
 
 const app = express();
 
@@ -55,3 +56,4 @@ app.use("/pedido", routerPedido);
 app.use("/stock", routerStock);
 app.use("/trabajador", routerTrabajador);
 app.use("/usuario", routerUsuario);
+app.use("/login", routerLogout);

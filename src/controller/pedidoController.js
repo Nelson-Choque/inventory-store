@@ -12,7 +12,7 @@ export const getProducts = (req, res) => {
       res.send("las pedido estan vacias");
       return "";
     }
-
+    
     res.send(result);
   });
 };

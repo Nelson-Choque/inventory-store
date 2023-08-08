@@ -43,15 +43,16 @@ export const createProduct = (req, res) => {
     const newProduct = req.body;
 
     const producto = new Producto(
-      newProduct.cod_producto,
+      newProduct.codProducto,
       newProduct.nombre,
       newProduct.descripcion,
-      newProduct.precio
+      newProduct.precio,
+      newProduct.url_img
     );
 
     connection.query(
-      "INSERT INTO producto (nombre, descripcion, precio) VALUES (?, ?, ?)",
-      [producto.nombre, producto.descripcion, producto.precio],
+      "INSERT INTO producto (nombre, descripcion, precio, url_img) VALUES (?, ?, ?,?)",
+      [producto.nombre, producto.descripcion, producto.precio, producto.urlImg],
       (err, result) => {
         if (err) {
           console.error("Error al insertar el producto:", err);
