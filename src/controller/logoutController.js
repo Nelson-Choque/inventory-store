@@ -19,8 +19,8 @@ export const registerUser = async (req, res) => {
     );
 
     connection.query(
-      "INSERT INTO persona (nombre, apellidos) VALUES (?, ?)",
-      [persona.nombre, persona.apellidos],
+      "INSERT INTO persona (nombre, apellidos,dni) VALUES (?, ?,?)",
+      [persona.nombre, persona.apellidos, persona.dni],
       async (err, result, fields) => {
         if (err) {
           console.error("Error al insertar el producto:", err);
@@ -42,6 +42,8 @@ export const registerUser = async (req, res) => {
           if (personaQuery[0].length > 0) {
             codPersona = personaQuery[0][0].cod_persona;
           }
+
+          console.log({ message: codPersona });
 
           const usuario = new Usuario(
             "",
