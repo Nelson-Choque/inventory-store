@@ -88,6 +88,8 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
+  console.log({ username, password });
+
   connection.query(
     "select * from usuario where username = ? && password = ?",
     [username, password],
@@ -101,7 +103,7 @@ export const loginUser = async (req, res) => {
         return "";
       }
 
-      res.send({ result: true, message: "es valido" });
+      res.send({ result: true, message: "es valido", data: result });
     }
   );
 };
