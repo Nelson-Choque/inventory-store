@@ -18,6 +18,8 @@ export const registerUser = async (req, res) => {
       newUser.fechaDeNacimiento
     );
 
+    console.log(newUser);
+
     connection.query(
       "INSERT INTO persona (nombre, apellidos,dni) VALUES (?, ?,?)",
       [persona.nombre, persona.apellidos, persona.dni],
